@@ -1,10 +1,22 @@
 // Load navbar.html
-  fetch('includes/navbar.html')
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById('navbar-placeholder').innerHTML = data;
-    })
-    .catch(error => console.error('Error loading navbar:', error));
+fetch('includes/navbar.html')
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById('navbar-placeholder').innerHTML = data;
+
+    // Now that navbar is loaded, bind hamburger logic
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (hamburger && navMenu) {
+      hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        hamburger.classList.toggle('open');
+      });
+    }
+  })
+  .catch(error => console.error('Error loading navbar:', error));
+  
 
   // Load footer.html
   fetch('includes/footer.html')
@@ -134,4 +146,39 @@ const scrollElements = document.querySelectorAll('.scroll-reveal');
   // Optional: pause on hover
   track.addEventListener('mouseenter', () => clearInterval(slideInterval));
   track.addEventListener('mouseleave', () => slideInterval = setInterval(nextSlide, 4000));
+
+
+  // Hamburger menu toggle for mobile navigation
+  document.addEventListener("DOMContentLoaded", function () {
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (hamburger && navMenu) {
+      hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        hamburger.classList.toggle('open');
+      });
+    }
+  });
+
+
+
+// Header not hide on scroll down, show on scroll up
+let lastScrollTop = 0;
+const header = document.querySelector("header");
+
+window.addEventListener("scroll", function () {
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+  if (scrollTop > lastScrollTop && scrollTop > 80) {
+    // Scroll down
+    header.style.transform = "translateY(-100%)";
+  } else {
+    // Scroll up
+    header.style.transform = "translateY(0)";
+  }
+
+  lastScrollTop = scrollTop;
+});
+
 

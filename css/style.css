@@ -39,24 +39,25 @@ header {
   background: white;
   box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
   z-index: 1000;
-}
-
-.nav-container {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0.8rem 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  transition: transform 0.4s ease-in-out;
 }
 
 .logo-img {
   height: 60px;
   width: auto;
   display: block;
-  margin-left: -100px;
+  margin-left: 0; 
 }
 
+.nav-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0.8rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* keep this */
+  position: relative;
+}
 
 nav ul {
   list-style: none;
@@ -424,7 +425,7 @@ main {
   background: white;
   margin: 5rem auto 3rem;
   padding: 3rem 2rem;
-  
+  margin-top: -10px;
   box-shadow: 0 6px 25px rgba(0, 0, 0, 0.05);
   max-width: 1600px;
 }
@@ -549,4 +550,252 @@ footer a:hover {
 }
 .scroll-reveal-right {
   transform: translateX(50px);
+}
+
+
+/* ----------------------------
+   RESPONSIVE DESIGN BREAKPOINTS
+----------------------------- */
+
+/* Tablets and smaller desktops */
+@media (max-width: 1024px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem 2rem;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0 0;
+  }
+
+  .hero h1 {
+    font-size: 2.3rem;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+  }
+
+  .project-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .project-image {
+    width: 90%;
+    max-width: 500px;
+  }
+
+  .project-content {
+    width: 100%;
+  }
+
+  .contact-wrapper {
+    flex-direction: column;
+    margin-top: 0px;
+  }
+
+  .form-container,
+  .map-container {
+    flex: 1 1 100%;
+  }
+}
+
+/* Mobile devices */
+@media (max-width: 768px) {
+  .logo-img {
+    margin-left: 0;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 0.7rem;
+    margin-right: 0;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tech-list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tech-item {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .hero {
+    padding: 4rem 1rem;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .btn-primary {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+
+  .project-title {
+    font-size: 1.6rem;
+    margin-top: 0;
+  }
+
+  .project-description {
+    font-size: 1rem;
+  }
+
+  .contact h2 {
+    font-size: 1.5rem;
+  }
+
+  .form-container,
+  .map-container {
+    padding: 0;
+  }
+
+  .map-container {
+    flex: 1 1 100%;
+    min-height: 150px;
+    margin-top: 1.5rem;
+    border-radius: 8px;
+  }
+
+  footer {
+    font-size: 0.8rem;
+    padding: 1rem 0.5rem;
+  }
+}
+
+/* Very small devices (phones < 480px) */
+@media (max-width: 480px) {
+  .nav-container {
+    padding: 1rem;
+  }
+
+  .btn-primary,
+  .btn-secondary,
+  .btn-submit {
+    font-size: 0.95rem;
+    padding: 0.75rem 1.5rem;
+  }
+
+  .project-card {
+    padding: 2rem 1rem;
+  }
+
+  .team-member {
+    padding: 1.5rem 1rem;
+  }
+
+  .member-photo {
+    width: 100px;
+    height: 100px;
+  }
+
+  input, textarea {
+    font-size: 0.95rem;
+  }
+
+  .carousel-dots button {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+
+/* Hamburger base */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: auto;
+  margin-top: -40px;
+  margin-right: 40px;
+}
+
+.hamburger .bar {
+  height: 3px;
+  width: 100%;
+  background-color: var(--secondary-color);
+  border-radius: 2px;
+  transition: all 0.4s ease;
+}
+
+/* Responsive Navigation */
+@media (max-width: 1024px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-menu {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background: white;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+    z-index: 1000;
+  }
+
+  .nav-menu.active {
+    display: flex;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .nav-links li {
+    margin: 0;
+  }
+}
+
+/* Desktop nav layout */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+
+/* Hamburger toggle animation */
+.hamburger.open .bar:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.open .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open .bar:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
 }
